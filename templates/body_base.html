@@ -1,0 +1,74 @@
+﻿{% extends "base.html" %}
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row-fluid navbar">
+            <div id="logo" class="span2">
+                <img src="{{config.cache.get('settings')['img_logo']}}" height="75" />
+            </div>
+            <div class="span10">
+                <div class="row-fluid">
+                    <div id="main-nav" class="span7 nav-collapse">
+                        <ul class="nav">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="{{url_for("faq")}}">FAQ</a></li>
+                            <li><a href="{{url_for("about")}}">About</a></li>
+                            <li><a href="{{url_for("contact")}}">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div id="account-nav" class="span5 nav-collapse">
+                        <ul class="nav">
+                            {% if g.user %}
+                                <li><a href="{{url_for("logout")}}">Logout</a></li>
+                            {% else %}
+                                <li><a href="{{url_for("signin")}}">Register</a></li>
+                                <li><a href="{{url_for("signin")}}">Login</a></li>
+                            {% endif %}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{url_for("account")}}">Settings</a></li>
+                                    <li><a href="{{url_for("transactions")}}">Transactions</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{url_for("cart")}}">Cart</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <form action="{{url_for("search")}}" method="POST" class="form-search">
+
+                        <span style="visibility : hidden;">-</span> <!-- move the search bar a little to the left -->
+
+                        <input type="text" class="input-medium search-query search-field" name="isbn"
+                               placeholder="Please enter one or more book ISBNs separated by spaces"/>
+                        <button type="submit" class="btn">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span2 ">
+                <img class="center" src="{{config.cache.get('settings')['img_banner_left']}}" />
+            </div>
+            <div id="content" class="span8">
+                {% for message in get_flashed_messages() %}
+                    <p class="alert">{{ message }}</p>
+                {% endfor %}
+                {% block content %} {% endblock %}
+            </div>
+             <div class="span2 ">
+                <img class="center" src="{{config.cache.get('settings')['img_banner_right']}}" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Le javascript. Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script src="{{url_for("static", filename="js/main.js")}}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+{% endblock %}

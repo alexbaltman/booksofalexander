@@ -1,0 +1,40 @@
+{% extends "body_base.html" %}
+{% import "macros.html" as macros %}
+{% block content %}
+    <h1>Checkout</h1>
+    {% if books %}
+        <p>Please confirm the following data and then click on 'Sell' to complete the process.</p>
+        <p></p>
+        <p>You want to sell the following books:</p>
+        <p></p>
+        <table class="table table-bordered ">
+            <tr>
+                <th> </th>
+                <th>Title</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            {% for asin, book in books.items( ) %}
+                <tr>
+                    <td><img src="{{book.img_url}}" width="{{book.img_width}}" hight="{{book.img_hight}}"</td>
+                    <td><h5>{{book.title}}</h5></td>
+                    <td>{{book.quantity}}</td>
+                    <td>${{book.quote}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th> </th>
+                <th>Total</th>
+                <th>{{total_quantity}}</th>
+                <th>${{total_price}}</th>
+            </tr>
+        </table>
+        <p></p>
+        <p>You want to get payed by <b>{{user.payment_method}}</b> and your chosen exchange method is <b>{{user.exchange_method}}</b>.</p>
+        <a href="{{url_for("checkout3")}}" class="btn btn-large btn-primary" >Sell</a>
+    {% else %}
+        <div class="alert">
+          <strong>No books are in the cart.</strong> Please use the search bar above to search for one or more book ISBN.
+        </div>
+    {% endif %}
+{% endblock %}

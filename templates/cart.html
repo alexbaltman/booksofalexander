@@ -1,0 +1,53 @@
+{% extends "body_base.html" %}
+{% block content %}
+
+    <h1>Cart</h1>
+
+    {% if not books and not wont_buy %}
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>No books in the cart.</strong> Please use the search bar above to search for one or more book ISBNs.
+        </div>
+    {% else %}
+        {% if wont_buy %}
+            <p>Unfortunately, we are not interested in buying the following books</p>
+            <table class="table table-bordered ">
+                {% for asin, book in wont_buy.items( ) %}
+                    <tr>
+                        <td><img src="{{book.img_url}}" width="{{book.img_width}}" hight="{{book.img_hight}}"</td>
+                        <td>
+                            <h5>{{book.title}}</h5>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        <form method="post" action="" class="form-horizontal">
+            <table class="table table-bordered ">
+                <tr>
+                    <th> </th>
+                    <th>Title</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                {% for asin, book in books.items( ) %}
+                    <tr>
+                        <td><img src="{{book.img_url}}" width="{{book.img_width}}" hight="{{book.img_hight}}"</td>
+                        <td><h5>{{book.title}}</h5></td>
+                        <td><input name="{{asin}}" type="text" style="width: 20px;" value="{{book.quantity}}"></td>
+                        <td>${{book.quote}}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <th> </th>
+                    <th>Total</th>
+                    <th>{{total_quantity}}</th>
+                    <th>${{total_price}}</th>
+                </tr>
+            </table>
+            <button type="submit" class="btn btn-large btn-primary">Update Quantity</button>
+            <a href="{{url_for("checkout")}}" class="btn btn-large btn-primary" >Checkout</a>
+        </form>
+    {% endif %}
+
+{% endblock %}

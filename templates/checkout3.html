@@ -1,0 +1,11 @@
+{% extends "body_base.html" %}
+{% import "macros.html" as macros %}
+{% block content %}
+    <h1>Checkout</h1>
+    <p>The checkout process is now complete. We'll send you an email in the next few minutes to confirm the tansaction.</p>
+    <p>{{html_payment_method_info}}</p>
+    <p>{{html_exchange_method_info}}</p>
+    <p>{{html_carrier_info}}</p>
+    <p><a href="{{shipping_label_url}}">Click here to print the shipping label</a></p>
+{% endblock %}
+

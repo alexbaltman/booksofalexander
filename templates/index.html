@@ -1,0 +1,23 @@
+{% extends "body_base.html" %}
+{% block content %}
+    <div>
+        <h2>Get More for</h2>
+	<h2>your books<h2/>
+	<span class="btn-custom"><a class="link-custom" href="{{url_for("signin")}}">Register Today</a></span>
+    </div>
+    <div class="row-fluid">
+        <div class="span4">
+              <h2>Free Shipping</h2>
+              <p>All books we purchase come with free shipping to our facility. If you follow the checkout process and click sell a prepaid shipping label will be provided for you to print out. All you have to do is pack up your books and ship them out to get paid.</p>
+        </div>
+        <div class="span4">
+              <h2>Finding your ISBN</h2>
+              <p>Immediately above the bar code on your book you will find a 10 digit or 13 digit ISBN #. The search function will take either one. If you can't find it there you can also look on the copyright page before the table of contents. The ISBN will be mixed in with that information.</p>
+        </div>
+        <div class="span4">
+<h2>Great Customer Service</h2>
+              <p>We will go the extra mile for you: send your money fast, price match your Universitiy's bookstore, and answer any questions you may have. Find out what we can do for you by contacting us today. </p>
+        </div>
+    </div>
+
+{% endblock %}

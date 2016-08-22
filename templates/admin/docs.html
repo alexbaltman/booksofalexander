@@ -1,0 +1,48 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+    </br>
+    <h1>Template Variables</h1>
+    <p>Template variables are names that get replaced with dynamic values that the name represents. You can use template variables in emails and in the templates of web pages. To use a variables just write the name of the variable enclosed in {{'{{'}} and {{'}}'}} if you want to use it in a web page template or with a single { and } if you want to use it in an email template (for example {name})</p>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Locations where this variable is available</th>
+        </tr>
+        <tr>
+            <td>shipping_label_url</td>
+            <td>The URL to the image of the shipping label that a book seller hast to print</td>
+            <td>On the page after the checkout and in the email that gets sent after the checkout</td>
+        </tr>
+        <tr>
+            <td>html_payment_method_info</td>
+            <td>The info that tells the seller what he or should do regarding the selected payment method. The text comes from the specific field on the content setings page (for example from the 'PayPal Checkout (HTML)' field). This string is formated as HTML.</td>
+            <td>On the page after the checkout and in the email that gets sent after the checkout</td>
+        </tr>
+        <tr>
+            <td>text_payment_method_info</td>
+            <td>The same as the last one but not formated as HTML</td>
+            <td>On the page after the checkout and in the email that gets sent after the checkout</td>
+        </tr>
+        <tr>
+            <td>html_exchange_method_info</td>
+            <td>The same as 'html_payment_method_info' but for the exchange method</td>
+            <td>On the page after the checkout and in the email that gets sent after the checkout</td>
+        </tr>
+        <tr>
+            <td>text_exchange_method_info</td>
+            <td>The same as 'text_payment_method_info' but for the exchange method</td>
+            <td>On the page after the checkout and in the email that gets sent after the checkout</td>
+        </tr>
+        <tr>
+            <td>html_carrier_info</td>
+            <td>The same as 'html_payment_method_info' but for the carrier</td>
+            <td>On the page after the checkout and in the email that gets sent after the checkout</td>
+        </tr>
+        <tr>
+            <td>text_carrier_info</td>
+            <td>The same as 'text_payment_method_info' but for the carrier</td>
+            <td>On the page after the checkout and in the email that gets sent after the checkout</td>
+        </tr>
+    </table>
+{% endblock %}

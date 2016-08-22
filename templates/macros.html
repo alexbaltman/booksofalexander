@@ -1,0 +1,45 @@
+
+{# weitere form macros: https://gist.github.com/1284631 #}
+
+{% macro form(form, action="", method="post") %}
+    <form method="{{method}}" action="{{action}}" class="form-horizontal">
+        {{ form.hidden_tag( ) }}
+        {% if form.field_sets %}
+            {% for set_name, field_names in form.field_sets %}
+                </br>
+                <fieldset>
+                    <legend>{{set_name}}</legend>
+                    {% for name in field_names.split( ) %}
+                        {{ render_form_field(form[name]) }}
+                    {% endfor %}
+                </fieldset>
+            {% endfor %}
+        {% else %}
+            {% for f in form if f.type != 'CSRFTokenField' %}
+                {{ render_form_field(f)}}
+            {% endfor %}
+        {% endif %}
+        <button type="submit" class="btn">Submit</button>
+    </form>
+{% endmacro %}
+
+{% macro render_form_field(f) %}
+    <div class="control-group">
+        {{ f.label(class_ = "control-label") }}
+        <div class="controls">
+            {{ f }}
+            {% if f.description %}
+                <span class="help-block">{{f.description|safe}}</span>
+            {% endif %}
+            {% if f.errors %}
+                <div class="alert alert-error">
+                    <ul>
+                        {% for e in f.errors %}
+                            <li>{{ e }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}

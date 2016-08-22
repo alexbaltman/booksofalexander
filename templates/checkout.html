@@ -1,0 +1,9 @@
+{% extends "body_base.html" %}
+{% import "macros.html" as macros %}
+{% block content %}
+    <h1>Checkout</h1>
+    <p>Do you already have an account on this site? If so, please <a href="{{url_for('signin', next=url_for('checkout2'))}}">click here to login</a>.
+    <p>If not: Would you like to create an account and save time when you sell your next textbook? In this case, please <a href="{{url_for('signin', next=url_for('checkout2'))}}">click here to create an account</a>.
+    <p>Otherwise, just fill out the form below and click on 'Submit' to continue:</p>
+    {{ macros.form(form)}}
+{% endblock %}

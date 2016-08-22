@@ -1,0 +1,15 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+    </br>
+    </br>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Desciption</th>
+            <th>Command or Information</th>
+        </tr>
+        <tr>
+            <td>Export Database</td>
+            <td><a href="{{url_for(".export")}}">Export</a></td>
+        </tr>
+    </table>
+{% endblock %}

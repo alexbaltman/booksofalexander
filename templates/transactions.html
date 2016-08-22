@@ -1,0 +1,31 @@
+{% extends "body_base.html" %}
+{% import "macros.html" as macros %}
+{% block content %}
+    {% if transactions %}
+        <h1>Your transactions</h1>
+        <table class="table table-bordered ">
+            <tr>
+                <th>Date</th>
+                <th>Money</th>
+                <th>Book ISBN</th>
+                <th>Shipping Label</th>
+                <th>Status</th>
+            </tr>
+        {% for t in transactions %}
+            <tr>
+                <td>{{t.transaction_time.date( ).isoformat( )}}</td>
+                <td>${{"{0:.2f}".format(t.price)}}</td>
+                <td>
+                    {% for b in t.books %}
+                        {{- b.isbn -}}{%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td><a href="{{t.shipping_label_url}}">Click here to print</a></td>
+                <td>{{t.status}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h1>No transactions available for your account</h1>
+    {% endif %}
+{% endblock %}
