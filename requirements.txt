@@ -13,7 +13,7 @@ Markdown==2.1.1
 MarkupSafe==0.15
 PyMeta==0.5.0
 PyYAML==3.10
-Pygments==1.4
+Pygments==2.7.4
 SQLAlchemy==0.8.0
 WTForms==1.0.3
 Werkzeug==0.8.3
