@@ -7,7 +7,7 @@ Flask-OpenID==1.1.1
 Flask-SQLAlchemy==0.16
 Flask-WTF==0.8.3
 Jinja2==2.6
-urllib3==1.16
+urllib3==1.26.5
 requests==1.0.3
 Markdown==2.1.1
 MarkupSafe==0.15
